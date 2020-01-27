@@ -26,23 +26,18 @@ class MyList extends Component {
 
   listView = (data, index)=> {
     return (
-      <div className="row">
-        <div className="col-md-10">
-          <li key={index} className="list-group-item clearfix">
-            {data.name}
-          </li>
-        </div>
-        <div className="col-md-2">
-          <button onClick={(e) => this.deleteContact(e, index)} className="btn btn-danger">
-            Remove
+      <ul style={styles.ul}>
+        <li key={index} style={styles.li}>
+          {data.name}
+          <button onClick={() => this.deleteContact(index)} style={styles.delBtn}>
+          Remove
           </button>
-        </div>
-    </div> 
+        </li>
+      </ul>
     )
   }
 
-  deleteContact = (e, index) => {
-    e.preventDefault();
+  deleteContact = (index) => {
     this.props.deleteContact(index);
   }
 
@@ -112,9 +107,21 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    background: 'gray'
+    background: 'lightgray',
+    fontWeight: '100',
+    color: 'gray',
+    height: '100vh',
+    padding: 20
   },
-  list: {
+  ul: {
+    display: 'flex',
+    flexDirection: 'column',
+    listStyle: 'none',
+    width: '100%',
+    margin: 0,
+    padding: 0
+  },
+  li: {
     padding: '2%',
     backgroundColor:'whitesmoke',
     color: 'rgb(163,173,194)',
@@ -123,5 +130,16 @@ const styles = {
     fontWeight: 'bold',
     cursor: 'pointer',
     //borderRadius: '10%' 
+  },
+  delBtn:{
+    padding: '1%',
+    background:'whitesmoke',
+    color: 'gray',
+    borderRadius: 5,
+    outline: 'none',
+    borderTopStyle: 'solid',
+    borderWidth: 1,
+    borderColor: 'gray',
+    cursor: 'pointer'
   }
 }
